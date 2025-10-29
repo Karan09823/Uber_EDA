@@ -46,21 +46,42 @@ The analysis aims to uncover factors influencing trip duration, cost, delays, ca
 
 # Trip Status Distribution
 <img width="640" height="644" alt="image" src="https://github.com/user-attachments/assets/0dbbad36-0206-4cc0-9e55-a5421f46aaed" />
-# Trip Duration Analysis
-<img width="661" height="528" alt="image" src="https://github.com/user-attachments/assets/4a007152-5df2-4384-ab9e-2b60dc642622" />
-# Pickup and Drop Hotspots
-<img width="390" height="207" alt="image" src="https://github.com/user-attachments/assets/3d146c89-3b67-4644-844c-ebb051b9de75" />
-# Payment Method Analysis
-<img width="652" height="530" alt="image" src="https://github.com/user-attachments/assets/f4434e5b-ddd2-469d-bd59-055effaff846" />
-# 
-<img width="670" height="525" alt="image" src="https://github.com/user-attachments/assets/ddcc2420-9469-4f9a-a8e7-d2fbf2a2a152" />
-<img width="1141" height="539" alt="image" src="https://github.com/user-attachments/assets/703a68e0-ad40-48a2-bda6-a343b922735a" />
-<img width="596" height="476" alt="image" src="https://github.com/user-attachments/assets/3c4eed91-cd4a-4a1f-9b07-9f2550c9dd7b" />
-<img width="484" height="465" alt="image" src="https://github.com/user-attachments/assets/2f844a01-6800-4ff3-8c53-7cc981c032d2" />
-<img width="614" height="461" alt="image" src="https://github.com/user-attachments/assets/ea1eaa32-19a3-468a-96ca-0245a7024611" />
-<img width="644" height="514" alt="image" src="https://github.com/user-attachments/assets/441732f1-2c2b-4351-b910-b3a5fb248f2c" />
-<img width="957" height="622" alt="image" src="https://github.com/user-attachments/assets/67d4c81b-0bf8-4900-bc3d-5d4e225379c3" />
-<img width="649" height="522" alt="image" src="https://github.com/user-attachments/assets/21099c2e-939e-47a2-b041-daec2374562d" />
+# Trip Cost Distribution
+<img width="719" height="560" alt="image" src="https://github.com/user-attachments/assets/bda4ceef-90eb-4f92-b205-628a174ac9d4" />
+# Trip Duration Distribution
+<img width="719" height="575" alt="image" src="https://github.com/user-attachments/assets/5f4b984d-d80e-4db7-ba23-a884c80b31b6" />
+# Request Count Vs Day Distribution
+<img width="720" height="568" alt="image" src="https://github.com/user-attachments/assets/2c162426-7b7d-452b-a325-432c9aaffacc" />
+# Request Count Vs Hour Distribution
+<img width="722" height="340" alt="image" src="https://github.com/user-attachments/assets/b29ffc85-b9de-4e71-ad54-0ac7262d347e" />
+# Trip Status Bifurcation
+<img width="652" height="517" alt="image" src="https://github.com/user-attachments/assets/721c09b1-97a4-451a-b9e3-03b40d119e7a" />
+# Trip Cancellation Trend
+<img width="534" height="512" alt="image" src="https://github.com/user-attachments/assets/fb4a06c3-8f51-4e25-a0b8-f7469141ce97" />
+# Incomplete Rides Bifurcation
+<img width="684" height="522" alt="image" src="https://github.com/user-attachments/assets/0ff5640b-c118-4f79-840e-1997acb9f159" />
+# Incomplete Rides by Day and Reason Distribution
+<img width="724" height="573" alt="image" src="https://github.com/user-attachments/assets/0f841204-7803-41f1-a9ea-4b9c8b3fcb68" />
+# Incomplete Rides by Hour and Reason Distribution
+<img width="718" height="469" alt="image" src="https://github.com/user-attachments/assets/e841ee17-5b60-43b8-9e2c-e65416bddfd3" />
+# Cancellations by Weather and Reason per Ride Type Distribution
+<img width="723" height="578" alt="image" src="https://github.com/user-attachments/assets/25118eba-a37b-4043-95bc-2625bc525d44" />
+# Trip Completion Vs weather condition Distribution
+<img width="689" height="616" alt="image" src="https://github.com/user-attachments/assets/69f4747a-99b1-4f75-84d2-a3222b035c11" />
+# Top Pickup Locations
+<img width="722" height="439" alt="image" src="https://github.com/user-attachments/assets/24be2736-33e4-4e78-ae39-f481429af3d6" />
+# Top Droping Locations
+<img width="721" height="396" alt="image" src="https://github.com/user-attachments/assets/a0a3a227-5b5e-4786-98c3-7f4601c6d0d1" />
+# Top Pickup and Drop Location combined
+<img width="720" height="400" alt="image" src="https://github.com/user-attachments/assets/3925e590-07ab-477c-96ae-d3c796e99d79" />
+# Top Drivers
+<img width="439" height="474" alt="image" src="https://github.com/user-attachments/assets/a994c432-c2cd-4931-88fe-58da17d0cbfe" />
+# Average Trip Duration Over Time
+<img width="722" height="401" alt="image" src="https://github.com/user-attachments/assets/1d14940c-4789-46fb-9448-f828a442d52f" />
+# Total Cost Trend by Ride Type
+<img width="727" height="403" alt="image" src="https://github.com/user-attachments/assets/746aa6d0-6bf8-4eed-a22f-35c2d9b23299" />
+# Ride Delay Correlation Heatmap
+<img width="656" height="576" alt="image" src="https://github.com/user-attachments/assets/292c66da-b4fc-4ef9-a508-5100ebf07f53" />
 
 # Key Insights
 - Digital payments (Card/UPI) are used for longer and costlier rides.
