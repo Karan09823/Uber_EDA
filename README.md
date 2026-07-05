@@ -69,57 +69,63 @@ Key steps taken before analysis:
 ## 📊 Exploratory Analysis & Visualizations
 
 ### 1. Trip Status Overview
-![Trip Status Distribution](images/trip_status_distribution.png)
-![Trip Status Bifurcation](images/trip_status_bifurcation.png)
+<img width="567" height="612" alt="image" src="https://github.com/user-attachments/assets/8a442209-4ddf-4a01-b5f3-4ee7524ad0d1" />
+
 
 Roughly **75.5%** of ride requests resulted in a completed trip, while **15.2%** were cancelled and **9.3%** failed due to no cars being available.
 
 ### 2. Trip Cost & Duration
-![Trip Cost Distribution](images/trip_cost_distribution.png)
-![Trip Duration Distribution](images/trip_duration_distribution.png)
+<img width="685" height="613" alt="image" src="https://github.com/user-attachments/assets/3aaf6135-e2da-43bc-a4a2-0cedda48632d" />
+<img width="706" height="617" alt="image" src="https://github.com/user-attachments/assets/013bd383-e12d-4838-b1a5-bbcece1905a5" />
+
 
 Most trips are low-cost (under ₹100), with a long tail of higher-fare trips. Trip duration is fairly evenly spread between 10–100 minutes, peaking around the 60–90 minute range.
 
 ### 3. Demand Patterns — Day & Hour
-![Request Count vs Day](images/request_count_vs_day.png)
-![Request Count vs Hour](images/request_count_vs_hour.png)
+<img width="697" height="602" alt="image" src="https://github.com/user-attachments/assets/0062c297-2d4f-432c-a484-a5be7e53675c" />
+<img width="750" height="426" alt="image" src="https://github.com/user-attachments/assets/7ee8e8c2-7710-436f-9cfb-93c594677ba4" />
+
 
 Requests spike sharply on **Tuesdays**, and demand shows two clear daily peaks — early morning (5–9 AM) and evening (5–9 PM) — consistent with commute patterns.
 
 ### 4. Cancellation Analysis
-![Trip Cancellation Trend](images/trip_cancellation_trend.png)
-![Incomplete Rides Bifurcation](images/incomplete_rides_bifurcation.png)
-![Incomplete Rides by Day and Reason](images/incomplete_rides_by_day.png)
-![Incomplete Rides by Hour and Reason](images/incomplete_rides_by_hour.png)
+<img width="575" height="578" alt="image" src="https://github.com/user-attachments/assets/f6860076-13a5-4d29-be81-55aadfba4f58" />
+<img width="700" height="606" alt="image" src="https://github.com/user-attachments/assets/1a783b70-1cb2-42c6-a721-fb0c904f6b42" />
+<img width="697" height="607" alt="image" src="https://github.com/user-attachments/assets/e83854f3-b5ea-4428-8223-2ec1958491a0" />
+<img width="732" height="556" alt="image" src="https://github.com/user-attachments/assets/88c883bc-659d-4ce6-86c6-fa66df783bb5" />
 
 Around **85.6%** of cancellations are driver-initiated versus **14.4%** by passengers. Cancellations cluster heavily around morning and evening peak hours, and are concentrated on Tuesdays — mirroring overall demand.
 
 ### 5. Weather Impact
-![Cancellations by Weather and Reason](images/cancellations_by_weather.png)
-![Trip Completion vs Weather](images/trip_completion_vs_weather.png)
+<img width="666" height="607" alt="image" src="https://github.com/user-attachments/assets/20a15cf4-a83d-490d-afa7-8cc3513d0626" />
+<img width="668" height="612" alt="image" src="https://github.com/user-attachments/assets/32baea28-276b-4153-b326-a588974ab72c" />
+
 
 Weather has only a marginal effect on completion rates — cancellation proportions stay broadly similar across Clear, Cloudy, and Rainy conditions, with a slightly higher share of passenger-driven cancellations during rain.
 
 ### 6. Location Insights
-![Top Pickup Locations](images/top_pickup_locations.png)
-![Top Drop Locations](images/top_drop_locations.png)
-![Top Pickup and Drop Combined](images/top_pickup_drop_combined.png)
+<img width="757" height="512" alt="image" src="https://github.com/user-attachments/assets/c37701b3-9381-4c06-ab4e-222199024efe" />
+<img width="741" height="482" alt="image" src="https://github.com/user-attachments/assets/925f3bbc-03d6-466d-a509-294d920b7816" />
+<img width="742" height="487" alt="image" src="https://github.com/user-attachments/assets/9902fa8d-7b61-43ea-a8df-3f13a207a0e2" />
+
 
 High-traffic zones include **Bangalore City Railway Station, Majestic Bus Station, Manyata Tech Park, MG Road**, and **Whitefield** — a mix of transit hubs, tech parks, and commercial centers.
 
 ### 7. Driver Performance
-![Top Drivers](images/top_drivers.png)
+<img width="467" height="558" alt="image" src="https://github.com/user-attachments/assets/1ec140c7-17f9-4053-9c49-494a0bbf495e" />
+
 
 Top-performing drivers combine high trip volume with strong tip earnings — the leading driver logged **115 trips** and over **₹35,000** in trip revenue.
 
 ### 8. Trends Over Time
-![Average Trip Duration Over Time](images/avg_trip_duration_over_time.png)
-![Total Cost Trend by Ride Type](images/total_cost_trend_by_ride_type.png)
+<img width="748" height="483" alt="image" src="https://github.com/user-attachments/assets/12d8187c-ceae-4ab2-8173-19ee4c3b154f" />
+<img width="740" height="483" alt="image" src="https://github.com/user-attachments/assets/135c0bc1-c3ee-4ca1-ad0f-20b32dccc4e7" />
 
 Average trip duration stayed relatively stable across the observed period before ticking upward toward December. Average cost varies noticeably by ride type and day, with **UberGo** showing the most volatile pricing trend.
 
 ### 9. Correlation Analysis
-![Ride Delay Correlation Heatmap](images/ride_delay_correlation_heatmap.png)
+<img width="647" height="620" alt="image" src="https://github.com/user-attachments/assets/aab84e6c-88d8-40ac-8249-c04845e8d444" />
+
 
 `trip_cost` and `total_cost` are (expectedly) perfectly correlated, and both show a moderate positive correlation with `extra_tip` (**0.63–0.67**) — suggesting costlier trips tend to draw higher tips. Trip duration and ride delay are unrelated to cost, indicating fare is driven primarily by distance/ride type rather than how long the ride takes.
 
@@ -158,23 +164,3 @@ Uber_EDA/
 ```
 
 ---
-
-## 🚀 How to Run
-
-```bash
-# Clone the repository
-git clone https://github.com/Karan09823/Uber_EDA.git
-cd Uber_EDA
-
-# Install dependencies
-pip install pandas numpy matplotlib seaborn jupyter openpyxl
-
-# Launch the notebook
-jupyter notebook Uber_EDA.ipynb
-```
-
----
-
-## 📬 Feedback
-
-If you spot an issue in the analysis or have suggestions for additional angles to explore (e.g., surge pricing, driver retention, geo-clustering of demand), feel free to open an issue or a pull request.
