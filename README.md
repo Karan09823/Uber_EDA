@@ -1,118 +1,180 @@
-# Uber Rides Exploratory Data Analysis (EDA)
-# Project Overview
-This project performs an Exploratory Data Analysis (EDA) on Uber ride data to understand key trends, patterns, and operational insights.
-The analysis aims to uncover factors influencing trip duration, cost, delays, cancellations, and customer behavior across different conditions such as weather, ride type, and payment method.
+# 🚖 Uber Rides — Exploratory Data Analysis (EDA)
 
-# Objectives
--Explore the structure and quality of the dataset
-- Handle missing values and outliers
-- Derive meaningful time-based features
-- Analyze trip patterns, driver performance, and customer preferences
-- Visualize key insights to support business decisions
+An end-to-end exploratory data analysis of Uber ride-request data from Bangalore, uncovering patterns in trip completion, cancellations, demand, pricing, and driver performance.
 
-# Dataset Information
+---
 
-| Column Name                               | Description                                            |
-| ----------------------------------------- | ------------------------------------------------------ |
-| `request_id`                              | Unique ID for each ride request                        |
-| `pickup_point`                            | Ride pickup location/zone                              |
-| `drop_point`                              | Ride destination/zone                                  |
-| `request_timestamp`                       | Time when user requested the ride                      |
-| `start_timestamp`                         | Time when the trip actually started                    |
-| `drop_timestamp`                          | Time when the trip ended                               |
-| `trip_cost`                               | Fare charged for the trip                              |
-| `extra_tip`                               | Additional tip paid by the customer                    |
-| `driver_id`                               | Unique ID of the driver                                |
-| `trip_status`                             | Status of the trip (Completed / Cancelled / No Driver) |
-| `ride_type`                               | Type of ride (e.g., Mini, Prime, XL)                   |
-| `payment_method`                          | Payment mode (Cash, Card, UPI, etc.)                   |
-| `weather`                                 | Weather condition during the trip                      |
-| `trip_duration_minutes`                   | Total duration of trip in minutes                      |
-| `total_cost`                              | Sum of fare and tip                                    |
-| `request_date`, `start_date`, `drop_date` | Extracted dates for temporal analysis                  |
-| `request_day`, `start_day`, `drop_day`    | Day names for weekly patterns                          |
-| `request_hour`, `start_hour`, `drop_hour` | Hour extracted for hourly analysis                     |
-| `ride_delay`                              | Delay between request and actual trip start            |
-| `cancellation_reason`                     | Reason if the ride was cancelled                       |
-| `hour`, `day`                             | Additional time-based features for aggregation         |
+## 📌 Project Overview
 
-# Data Preprocessing
-- Key preprocessing steps performed:
-- Converted timestamps to datetime format
-- Derived duration, delay, and date/time components
-- Handled missing and inconsistent data entries
-- Removed invalid timestamp rows (e.g., missing start/drop times for completed trips)
-- Created derived features like trip_duration_minutes, total_cost, and ride_delay
+Ride-hailing platforms generate rich operational data at every stage of a trip — from request to pickup to drop-off. This project explores a Uber-style ride dataset to understand **what drives trip completion, cancellation, delay, and cost**, and to surface insights that could inform operational and business decisions.
 
-# Trip Status Distribution
-<img width="640" height="644" alt="image" src="https://github.com/user-attachments/assets/0dbbad36-0206-4cc0-9e55-a5421f46aaed" />
+The analysis covers the full data pipeline: cleaning and feature engineering, univariate and bivariate analysis, time-based trend analysis, and correlation analysis — supported by visualizations at every stage.
 
-# Trip Cost Distribution
-<img width="719" height="560" alt="image" src="https://github.com/user-attachments/assets/bda4ceef-90eb-4f92-b205-628a174ac9d4" />
+---
 
-# Trip Duration Distribution
-<img width="719" height="575" alt="image" src="https://github.com/user-attachments/assets/5f4b984d-d80e-4db7-ba23-a884c80b31b6" />
+## 🎯 Objectives
 
-# Request Count Vs Day Distribution
-<img width="720" height="568" alt="image" src="https://github.com/user-attachments/assets/2c162426-7b7d-452b-a325-432c9aaffacc" />
+- Explore the structure, quality, and completeness of the raw dataset
+- Clean missing values, invalid timestamps, and inconsistent entries
+- Engineer time-based features (date, day, hour) for temporal analysis
+- Understand trip status distribution (completed vs. cancelled vs. no cars available)
+- Analyze cancellation behavior by day, hour, weather, and ride type
+- Identify demand hotspots (top pickup/drop locations) and peak demand windows
+- Evaluate driver performance and cost/duration trends over time
+- Examine correlations between cost, tip, delay, and duration
 
-# Request Count Vs Hour Distribution
-<img width="722" height="340" alt="image" src="https://github.com/user-attachments/assets/b29ffc85-b9de-4e71-ad54-0ac7262d347e" />
+---
 
-# Trip Status Bifurcation
-<img width="652" height="517" alt="image" src="https://github.com/user-attachments/assets/721c09b1-97a4-451a-b9e3-03b40d119e7a" />
+## 🗂️ Dataset Overview
 
-# Trip Cancellation Trend
-<img width="534" height="512" alt="image" src="https://github.com/user-attachments/assets/fb4a06c3-8f51-4e25-a0b8-f7469141ce97" />
+The dataset contains simulated Uber ride-request records for Bangalore, with the following key fields:
 
-# Incomplete Rides Bifurcation
-<img width="684" height="522" alt="image" src="https://github.com/user-attachments/assets/0ff5640b-c118-4f79-840e-1997acb9f159" />
+| Column | Description |
+|---|---|
+| `request_id` | Unique identifier for each ride request |
+| `pickup_point` | Pickup location/zone |
+| `drop_point` | Destination location/zone |
+| `request_timestamp` | Time the ride was requested |
+| `start_timestamp` | Time the trip started |
+| `drop_timestamp` | Time the trip ended |
+| `trip_cost` | Fare charged for the trip |
+| `extra_tip` | Additional tip paid by the customer |
+| `driver_id` | Unique identifier for the driver |
+| `trip_status` | Trip Completed / Trip Cancelled / No Cars Available |
+| `ride_type` | UberGo / UberX / UberXL |
+| `payment_method` | Cash, Card, UPI, etc. |
+| `weather` | Weather condition during the trip (Clear/Cloudy/Rainy) |
+| `trip_duration_minutes` | Duration of the trip in minutes |
+| `total_cost` | Sum of fare and tip |
+| `request_date`, `start_date`, `drop_date` | Derived calendar dates |
+| `request_day`, `start_day`, `drop_day` | Derived day-of-week fields |
+| `request_hour`, `start_hour`, `drop_hour` | Derived hour-of-day fields |
+| `ride_delay` | Delay between request and actual trip start |
+| `cancellation_reason` | Driver or Passenger (for incomplete trips) |
 
-# Incomplete Rides by Day and Reason Distribution
-<img width="724" height="573" alt="image" src="https://github.com/user-attachments/assets/0f841204-7803-41f1-a9ea-4b9c8b3fcb68" />
+---
 
-# Incomplete Rides by Hour and Reason Distribution
-<img width="718" height="469" alt="image" src="https://github.com/user-attachments/assets/e841ee17-5b60-43b8-9e2c-e65416bddfd3" />
+## 🧹 Data Preprocessing
 
-# Cancellations by Weather and Reason per Ride Type Distribution
-<img width="723" height="578" alt="image" src="https://github.com/user-attachments/assets/25118eba-a37b-4043-95bc-2625bc525d44" />
+Key steps taken before analysis:
 
-# Trip Completion Vs weather condition Distribution
-<img width="689" height="616" alt="image" src="https://github.com/user-attachments/assets/69f4747a-99b1-4f75-84d2-a3222b035c11" />
+- Converted all timestamp columns to proper `datetime` format
+- Derived `trip_duration_minutes`, `ride_delay`, and `total_cost` as engineered features
+- Extracted `date`, `day`, and `hour` components from timestamps for time-series and pattern analysis
+- Identified and removed invalid records — e.g., completed trips missing a start or drop timestamp
+- Standardized categorical fields (trip status, cancellation reason, weather, ride type) for consistent grouping
 
-# Top Pickup Locations
-<img width="722" height="439" alt="image" src="https://github.com/user-attachments/assets/24be2736-33e4-4e78-ae39-f481429af3d6" />
+---
 
-# Top Droping Locations
-<img width="721" height="396" alt="image" src="https://github.com/user-attachments/assets/a0a3a227-5b5e-4786-98c3-7f4601c6d0d1" />
+## 📊 Exploratory Analysis & Visualizations
 
-# Top Pickup and Drop Location combined
-<img width="720" height="400" alt="image" src="https://github.com/user-attachments/assets/3925e590-07ab-477c-96ae-d3c796e99d79" />
+### 1. Trip Status Overview
+![Trip Status Distribution](images/trip_status_distribution.png)
+![Trip Status Bifurcation](images/trip_status_bifurcation.png)
 
-# Top Drivers
-<img width="439" height="474" alt="image" src="https://github.com/user-attachments/assets/a994c432-c2cd-4931-88fe-58da17d0cbfe" />
+Roughly **75.5%** of ride requests resulted in a completed trip, while **15.2%** were cancelled and **9.3%** failed due to no cars being available.
 
-# Average Trip Duration Over Time
-<img width="722" height="401" alt="image" src="https://github.com/user-attachments/assets/1d14940c-4789-46fb-9448-f828a442d52f" />
+### 2. Trip Cost & Duration
+![Trip Cost Distribution](images/trip_cost_distribution.png)
+![Trip Duration Distribution](images/trip_duration_distribution.png)
 
-# Total Cost Trend by Ride Type
-<img width="727" height="403" alt="image" src="https://github.com/user-attachments/assets/746aa6d0-6bf8-4eed-a22f-35c2d9b23299" />
+Most trips are low-cost (under ₹100), with a long tail of higher-fare trips. Trip duration is fairly evenly spread between 10–100 minutes, peaking around the 60–90 minute range.
 
-# Ride Delay Correlation Heatmap
-<img width="656" height="576" alt="image" src="https://github.com/user-attachments/assets/292c66da-b4fc-4ef9-a508-5100ebf07f53" />
+### 3. Demand Patterns — Day & Hour
+![Request Count vs Day](images/request_count_vs_day.png)
+![Request Count vs Hour](images/request_count_vs_hour.png)
 
-# Key Insights
-- Digital payments (Card/UPI) are used for longer and costlier rides.
-- Cash trips dominate in volume but have lower average fare.
-- Delays increase during bad weather and rush hours.
-- Weekends show higher demand and slightly higher costs.
-- Certain pickup/drop zones are consistently high in demand.
-- Driver earnings vary significantly based on location and timing.
-- Cancellations are mostly rider-driven or due to no available drivers in peak times
-- 
-# Tools & Libraries Used
-- Python – Data analysis and visualization
-- Pandas – Data manipulation and preprocessing
-- NumPy – Numerical operations
-- Matplotlib / Seaborn – Data visualization
-- Jupyter Notebook / Google Colab – Interactive environment
+Requests spike sharply on **Tuesdays**, and demand shows two clear daily peaks — early morning (5–9 AM) and evening (5–9 PM) — consistent with commute patterns.
+
+### 4. Cancellation Analysis
+![Trip Cancellation Trend](images/trip_cancellation_trend.png)
+![Incomplete Rides Bifurcation](images/incomplete_rides_bifurcation.png)
+![Incomplete Rides by Day and Reason](images/incomplete_rides_by_day.png)
+![Incomplete Rides by Hour and Reason](images/incomplete_rides_by_hour.png)
+
+Around **85.6%** of cancellations are driver-initiated versus **14.4%** by passengers. Cancellations cluster heavily around morning and evening peak hours, and are concentrated on Tuesdays — mirroring overall demand.
+
+### 5. Weather Impact
+![Cancellations by Weather and Reason](images/cancellations_by_weather.png)
+![Trip Completion vs Weather](images/trip_completion_vs_weather.png)
+
+Weather has only a marginal effect on completion rates — cancellation proportions stay broadly similar across Clear, Cloudy, and Rainy conditions, with a slightly higher share of passenger-driven cancellations during rain.
+
+### 6. Location Insights
+![Top Pickup Locations](images/top_pickup_locations.png)
+![Top Drop Locations](images/top_drop_locations.png)
+![Top Pickup and Drop Combined](images/top_pickup_drop_combined.png)
+
+High-traffic zones include **Bangalore City Railway Station, Majestic Bus Station, Manyata Tech Park, MG Road**, and **Whitefield** — a mix of transit hubs, tech parks, and commercial centers.
+
+### 7. Driver Performance
+![Top Drivers](images/top_drivers.png)
+
+Top-performing drivers combine high trip volume with strong tip earnings — the leading driver logged **115 trips** and over **₹35,000** in trip revenue.
+
+### 8. Trends Over Time
+![Average Trip Duration Over Time](images/avg_trip_duration_over_time.png)
+![Total Cost Trend by Ride Type](images/total_cost_trend_by_ride_type.png)
+
+Average trip duration stayed relatively stable across the observed period before ticking upward toward December. Average cost varies noticeably by ride type and day, with **UberGo** showing the most volatile pricing trend.
+
+### 9. Correlation Analysis
+![Ride Delay Correlation Heatmap](images/ride_delay_correlation_heatmap.png)
+
+`trip_cost` and `total_cost` are (expectedly) perfectly correlated, and both show a moderate positive correlation with `extra_tip` (**0.63–0.67**) — suggesting costlier trips tend to draw higher tips. Trip duration and ride delay are unrelated to cost, indicating fare is driven primarily by distance/ride type rather than how long the ride takes.
+
+---
+
+## 💡 Key Insights
+
+- **Completion rate is strong overall (~75%)**, but cancellations are overwhelmingly driver-initiated rather than passenger-initiated.
+- **Demand is highly peaked** around commute hours (morning & evening) and spikes on specific weekdays, pointing to opportunities for dynamic driver allocation.
+- **Weather has limited impact** on trip completion, suggesting operational cancellations are more behavior-driven than condition-driven.
+- **Tips scale with fare**, but not with trip duration or delay — riders tip based on cost, not time spent.
+- **Demand is concentrated** around transit hubs, tech parks, and commercial centers, making these natural targets for driver positioning strategies.
+- **A small group of drivers** account for disproportionately high trip volume and earnings, indicating potential for identifying and replicating high-performer behavior.
+
+---
+
+## 🛠️ Tools & Libraries Used
+
+- **Python** — core analysis language
+- **Pandas** — data manipulation and preprocessing
+- **NumPy** — numerical operations
+- **Matplotlib / Seaborn** — data visualization
+- **Jupyter Notebook** — interactive analysis environment
+
+---
+
+## 📁 Repository Structure
+
+```
+Uber_EDA/
+├── Uber_EDA.ipynb      # Main analysis notebook
+├── uber_eda.py         # Script version of the analysis
+├── Uber_data.xlsx      # Source dataset
+├── images/             # Exported chart images used in this README
+└── README.md
+```
+
+---
+
+## 🚀 How to Run
+
+```bash
+# Clone the repository
+git clone https://github.com/Karan09823/Uber_EDA.git
+cd Uber_EDA
+
+# Install dependencies
+pip install pandas numpy matplotlib seaborn jupyter openpyxl
+
+# Launch the notebook
+jupyter notebook Uber_EDA.ipynb
+```
+
+---
+
+## 📬 Feedback
+
+If you spot an issue in the analysis or have suggestions for additional angles to explore (e.g., surge pricing, driver retention, geo-clustering of demand), feel free to open an issue or a pull request.
